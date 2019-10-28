@@ -7,15 +7,13 @@ function halfSquare(num) {
 }
 
 function exclaim(str) {
-  if (str[str.length - 2] !== '!') {
-    return str.includes('!') ? str : str + '!'
-    } else {
-      for (let i = 0; i < str.length - 1; i++) {
-        if (str[i].includes('!')) {
-        return str.slice(0, i + 1)
-      }
-    }
-  } 
+  let exclaimed = str.slice() + '!';
+
+  while(exclaimed[exclaimed.length - 2] === '!') {
+    exclaimed = exclaimed.slice(0, -1);
+  }
+
+  return exclaimed;
 }
 
 function isLong(str) {
@@ -114,25 +112,20 @@ function truncate(str) {
 }
 
 function isValidPassword(str) {
-    if (containsDigit(str) &&
-        containsLowerCase(str) &&
-        containsUpperCase(str) &&
-        containsNonAlphanumeric(str) &&
-        containsSpace(str) === false)
-        {
-        return true;
-        }
-        return false;
+  return containsDigit(str) 
+      && containsLowerCase(str) 
+      && containsUpperCase(str) 
+      && containsNonAlphanumeric(str) 
+      && !containsSpace(str);
   }
-
-
 
 function onlyPunchy(movieTitles) {
   const result = [];
 
   for (let i = 0; i < movieTitles.length; i++) {
-    if (isLong(movieTitles[i]) === false) {
-      result.push(exclaim(movieTitles[i]));
+    const exclaimed = exclaim(movieTitles[i]);
+    if (!isLong(exclaimed)) {
+      result.push(exclaimed);
     }
   } 
 
