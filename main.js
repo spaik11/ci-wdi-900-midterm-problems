@@ -1,43 +1,144 @@
-function isEvenlyDivisible() {
+function isEvenlyDivisible(num1, num2) {
+  return num1 % num2 === 0;
 }
 
-function halfSquare() {
+function halfSquare(num) {
+  return num * num / 2;
 }
 
-function isLong() {
+function exclaim(str) {
+  if (str[str.length - 2] !== '!') {
+    return str.includes('!') ? str : str + '!'
+    } else {
+      for (let i = 0; i < str.length - 1; i++) {
+        if (str[i].includes('!')) {
+        return str.slice(0, i + 1)
+      }
+    }
+  } 
 }
 
-function exclaim() {
+function isLong(str) {
+  return str.length >= 15;
 }
 
-function countWords() {
+function containsDigit(str) {
+  let digits = '0123456789';
+
+  for (let i = 0; i < str.length; i++) {
+    if (digits.includes(str[i])) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
-function containsDigit() {
+function containsLowerCase(str) {
+  let lowerCase = 'qwertyuiopasdfghjklzxcvbnm';
+
+  for (let i = 0; i < str.length; i++) {
+    if (lowerCase.includes(str[i])) {
+      return true;
+    } 
+  }
+
+  return false;
 }
 
-function containsLowerCase() {
+function containsUpperCase(str) {
+  let upperCase = 'QWERTYUIOPASDFGHJKLZXCVBNM';
+
+  for (let i = 0; i < str.length; i++) {
+    if (upperCase.includes(str[i])) {
+      return true;
+    } 
+  }
+
+  return false;
 }
 
-function containsUpperCase() {
+function containsNonAlphanumeric(str) {
+  let nonAlphanumeric = '`~!@#$%^&*()_+{}|:"<>?-=[];,./ ';
+
+  for (let i = 0; i < str.length; i++) {
+    if (nonAlphanumeric.includes(str[i])) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
-function containsNonAlphanumeric() {
+function containsSpace(str) {
+  for (let i = 0; i < str.length; i++) {
+    if (' '.includes(str[i])) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
-function containsSpace() {
+function countWords(str) {
+  let count = 1;
+
+  for (let i = 0; i < str.length; i++) {
+    if (' '.includes(str[i])) {
+      count++;
+    }
+  }
+
+  return count;
 }
 
-function digits() {
+function digits(numbers) {
+  let newArr = [];
+  let toStr = numbers.toString();
+  let toArr = toStr.split('');
+
+  for (let i = 0; i < toArr.length; i++){
+    if (isNaN(toArr[i]) === false) {
+      newArr.push(Number(toArr[i]))
+    }
+  }
+  
+  return newArr;
 }
 
-function truncate() {
+function truncate(str) {
+  if (isLong(str)) {
+    return str.slice(0, 8) + '...';
+  } else {
+    return str;
+  }
 }
 
-function isValidPassword() {
+function isValidPassword(str) {
+  for (let i = 0; i < str.length; i++) {
+    if (containsDigit(str) &&
+        containsLowerCase(str) &&
+        containsUpperCase(str) &&
+        containsNonAlphanumeric(str) &&
+        containsSpace(str) === false)
+        {
+          return true;
+        }
+  }
+
+  return false;
 }
 
-function onlyPunchy() {
+function onlyPunchy(movieTitles) {
+  const result = [];
+
+  for (let i = 0; i < movieTitles.length; i++) {
+    if (isLong(movieTitles[i]) === false) {
+      result.push(exclaim(movieTitles[i]));
+    }
+  } 
+
+  return result;
 }
 
 
