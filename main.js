@@ -102,7 +102,6 @@ function digits(numbers) {
       newArr.push(Number(toArr[i]))
     }
   }
-  
   return newArr;
 }
 
@@ -115,19 +114,18 @@ function truncate(str) {
 }
 
 function isValidPassword(str) {
-  for (let i = 0; i < str.length; i++) {
     if (containsDigit(str) &&
         containsLowerCase(str) &&
         containsUpperCase(str) &&
         containsNonAlphanumeric(str) &&
         containsSpace(str) === false)
         {
-          return true;
+        return true;
         }
+        return false;
   }
 
-  return false;
-}
+
 
 function onlyPunchy(movieTitles) {
   const result = [];
